@@ -281,11 +281,11 @@
                 const shape = Math.random() > 0.5 ? '50%' : '0';
 
                 confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.width = '${ size } px';
-                confetti.style.height = '${ size } px';
+                confetti.style.width = `${size}px`;
+                confetti.style.height = `${size}px`;
                 confetti.style.borderRadius = shape;
-                confetti.style.left = '${ Math.random() * 100 }%';
-                confetti.style.animationDuration = '${ Math.random() * 3 + 2 } s';
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.animationDuration = `${Math.random() * 3 + 2} s`;
 
                 document.body.appendChild(confetti);
 
@@ -314,9 +314,9 @@
                     </svg>
                 `;
 
-                balloon.style.left = '${ left }%';
-                balloon.style.top = '${ Math.random() * 30 + 5 }%';
-                balloon.style.animationDelay = '${ Math.random() * 2 } s';
+                balloon.style.left = `${left}%`;
+                balloon.style.top = `${Math.random() * 30 + 5}%`;
+                balloon.style.animationDelay = `${Math.random() * 2} s`;
 
                 document.getElementById('balloons-container').appendChild(balloon);
 
