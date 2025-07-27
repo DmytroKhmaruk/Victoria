@@ -1,0 +1,344 @@
+Діанка, [27.07.2025 9:27]
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>З Днем Народження, Вікторія!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 50%, #80deea 100%);
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .name-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #66bb6a;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .birthday-title {
+            color: #4fc3f7;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            background: rgba(220, 255, 220, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .yoga-figure {
+            transition: transform 0.8s ease;
+        }
+
+        .yoga-pose-1 {
+            opacity: 1;
+            transition: opacity 0.8s ease;
+        }
+
+        .yoga-pose-2,
+        .yoga-pose-3 {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+            animation: fall 4s ease-out forwards;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .balloon {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .message {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn-action {
+            background: #4fc3f7;
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 195, 247, 0.5);
+        }
+
+        .btn-secondary {
+            background: #ffd700;
+            color: #333333;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+    </style>
+</head>
+
+<body class="flex items-center justify-center p-4">
+    <div class="card w-full max-w-2xl p-8 relative overflow-hidden">
+        <h1 class="text-4xl font-bold text-center mb-2 birthday-title">З Днем Народження!</h1>
+        <h2 class="name-title text-center mb-6">Вікторія</h2>
+
+        <div class="flex flex-col md:flex-row items-center justify-between">
+
+            Діанка, [27.07.2025 9:27]
+            <div class="yoga-container relative w-64 h-64 mx-auto md:mx-0 mb-6 md:mb-0">
+                <!-- Yoga Pose 1: Warrior II (Virabhadrasana II) - More realistic -->
+                <svg class="yoga-pose-1 w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Head -->
+                    <circle cx="100" cy="60" r="12" fill="#66bb6a" />
+                    <!-- Neck -->
+                    <path d="M100,72 L100,80" stroke="#66bb6a" stroke-width="6" stroke-linecap="round" />
+                    <!-- Torso -->
+                    <path d="M100,80 L100,110" stroke="#66bb6a" stroke-width="10" stroke-linecap="round" />
+                    <!-- Arms stretched out -->
+                    <path d="M100,85 L50,85" stroke="#66bb6a" stroke-width="6" stroke-linecap="round" />
+                    <path d="M100,85 L150,85" stroke="#66bb6a" stroke-width="6" stroke-linecap="round" />
+                    <!-- Hands -->
+                    <circle cx="50" cy="85" r="4" fill="#66bb6a" />
+                    <circle cx="150" cy="85" r="4" fill="#66bb6a" />
+                    <!-- Left leg bent -->
+                    <path d="M100,110 L70,140" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                    <path d="M70,140 L70,150" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                    <!-- Right leg stretched -->
+                    <path d="M100,110 L140,140" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                    <path d="M140,140 L140,150" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                    <!-- Feet -->
+                    <path d="M65,150 L75,150" stroke="#66bb6a" stroke-width="6" stroke-linecap="round" />
+                    <path d="M135,150 L145,150" stroke="#66bb6a" stroke-width="6" stroke-linecap="round" />
+                    <!-- Face details -->
+                    <circle cx="96" cy="57" r="2" fill="#fff" />
+                    <circle cx="104" cy="57" r="2" fill="#fff" />
+                    <path d="M96,64 Q100,66 104,64" stroke="#fff" stroke-width="1.5" fill="none" />
+                    <!-- Hair -->
+                    <path d="M88,52 Q100,40 112,52" stroke="#66bb6a" stroke-width="4" fill="none" />
+                </svg>
+
+                <!-- Yoga Pose 2: Seated Forward Bend (Paschimottanasana) -->
+                <svg class="yoga-pose-2 w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Head -->
+                    <circle cx="100" cy="80" r="15" fill="#66bb6a" />
+                    <!-- Body -->
+                    <path d="M100,95 L100,130" stroke="#66bb6a" stroke-width="10" stroke-linecap="round" />
+                    <!-- Arms -->
+                    <path d="M100,105 L130,130" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                    <path d="M100,105 L70,130" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                    <!-- Legs -->
+                    <path d="M100,130 L140,130" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                    <path d="M100,130 L60,130" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                    <!-- Face -->
+                    <circle cx="95" cy="75" r="2" fill="#fff" />
+                    <circle cx="105" cy="75" r="2" fill="#fff" />
+                    <path d="M95,85 Q100,88 105,85" stroke="#fff" stroke-width="1.5" fill="none" />
+                </svg>
+
+                <!-- Yoga Pose 3: Bridge Pose (Setu Bandhasana) -->
+                <svg class="yoga-pose-3 w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Head -->
+                    <circle cx="60" cy="120" r="15" fill="#66bb6a" />
+                    <!-- Body - arched -->
+                    <path d="M75,120 Q100,80 125,120" stroke="#66bb6a" stroke-width="10" stroke-linecap="round"
+                        fill="none" />
+                    <!-- Arms -->
+
+                    Діанка, [27.07.2025 9:27]
+                    <path d="M75,120 L55,140" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                    <path d="M75,120 L55,100" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                    <!-- Legs -->
+                    <path d="M125,120 L140,150" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                    <path d="M125,120 L110,150" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                    <!-- Face (sideways) -->
+                    <circle cx="55" cy="115" r="2" fill="#fff" />
+                    <circle cx="55" cy="125" r="2" fill="#fff" />
+                    <path d="M65,120 Q68,125 65,130" stroke="#fff" stroke-width="1.5" fill="none" />
+                </svg>
+            </div>
+
+            <div class="message-container w-full md:w-1/2 text-center md:text-left">
+                <div class="message mb-6">
+                    <p class="text-lg text-gray-700 mb-4">Бажаємо тобі гармонії, здоров'я та радості у новому році
+                        життя!</p>
+                    <p class="text-lg text-gray-700">Нехай кожен день приносить нові можливості та натхнення!</p>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                    <button id="btnCelebrate"
+                        class="btn-action px-6 py-3 rounded-full font-semibold">Святкувати!</button>
+                    <button id="btnYoga" class="btn-secondary px-6 py-3 rounded-full font-semibold">Змінити
+                        позу</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Balloons Container -->
+        <div id="balloons-container"></div>
+    </div>
+
+    Діанка, [27.07.2025 9:27]
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Show message with animation
+            setTimeout(() => {
+                document.querySelector('.message').classList.add('show');
+            }, 500);
+
+            // Yoga pose animation
+            let currentPose = 1;
+            const totalPoses = 3;
+            const yogaPoses = document.querySelectorAll('.yoga-pose-1, .yoga-pose-2, .yoga-pose-3');
+
+            document.getElementById('btnYoga').addEventListener('click', function () {
+                yogaPoses[currentPose - 1].style.opacity = '0';
+
+                currentPose = currentPose % totalPoses + 1;
+
+                setTimeout(() => {
+                    yogaPoses[currentPose - 1].style.opacity = '1';
+                }, 400);
+            });
+
+            // Celebration animation
+            document.getElementById('btnCelebrate').addEventListener('click', createCelebration);
+
+            function createCelebration() {
+                // Create confetti
+                for (let i = 0; i < 50; i++) {
+                    createConfetti();
+                }
+
+                // Create balloons
+                for (let i = 0; i < 8; i++) {
+                    createBalloon();
+                }
+            }
+
+            function createConfetti() {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+
+                // Random properties
+                const colors = ['#4fc3f7', '#66bb6a', '#e0f7fa', '#ffffff', '#ffeb3b', '#ff9800', '#f44336'];
+                const size = Math.random() * 10 + 5;
+                const shape = Math.random() > 0.5 ? '50%' : '0';
+
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = '${ size } px';
+                confetti.style.height = '${ size } px';
+                confetti.style.borderRadius = shape;
+                confetti.style.left = '${ Math.random() * 100 }%';
+                confetti.style.animationDuration = '${ Math.random() * 3 + 2 } s';
+
+                document.body.appendChild(confetti);
+
+                // Remove after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 4000);
+            }
+
+            function createBalloon() {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+
+                // Lighter rainbow colors
+                const colors = ['#ff9999', '#ffcc99', '#ffffaa', '#99ff99', '#99ccff', '#cc99ff', '#ffb3e6'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                const size = Math.random() * 30 + 40;
+                const left = Math.random() * 80 + 10;
+
+                // Create SVG balloon
+                balloon.innerHTML = `
+                    <svg width="${size}" height="${size * 1.2}" viewBox="0 0 50 60">
+                        <path d="M25,5 C15,5 5,15 5,30 C5,45 15,50 25,50 C35,50 45,45 45,30 C45,15 35,5 25,5" fill="${color}"/>
+                        <path d="M25,50 L25,58" stroke="#666" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M23,58 L27,58" stroke="#666" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                `;
+
+                balloon.style.left = '${ left }%';
+                balloon.style.top = '${ Math.random() * 30 + 5 }%';
+                balloon.style.animationDelay = '${ Math.random() * 2 } s';
+
+                document.getElementById('balloons-container').appendChild(balloon);
+
+                setTimeout(() => {
+                    balloon.style.opacity = '1';
+                }, 100);
+
+                // Remove after some time
+                setTimeout(() => {
+                    balloon.style.opacity = '0';
+                    setTimeout(() => {
+                        balloon.remove();
+                    }, 1000);
+                }, 10000);
+            }
+        });
+    </script>
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'96533ae163a95b96',t:'MTc1MzUyNTkxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+</body>
+
+</html>
