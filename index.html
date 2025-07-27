@@ -18,8 +18,11 @@
 
         .card {
             position: relative;
-            /* важливо для кульок */
+            /* Щоб кульки позиціювались всередині */
             overflow: hidden;
+            /* Щоб не вилітали за межі */
+            width: 400px;
+            height: 300px;
         }
 
         #balloons-container {
@@ -35,7 +38,6 @@
         .balloon {
             position: absolute;
             opacity: 0;
-            transition: opacity 1s ease;
             animation: float-up 6s linear forwards;
         }
 
@@ -46,7 +48,7 @@
             }
 
             100% {
-                transform: translateY(-120%);
+                transform: translateY(-350px);
                 opacity: 0;
             }
         }
@@ -54,20 +56,20 @@
 </head>
 
 <body>
-    <div class="card bg-green-200 rounded-2xl p-8 shadow-2xl w-full max-w-2xl text-center">
-        <h1 class="text-4xl font-bold mb-4">🎉 З Днем Народження! 🎉</h1>
-        <p class="text-lg mb-6">
-            Бажаю тобі море радості, щастя та здійснення всіх мрій! 🌈💖
-        </p>
-        <button id="start-btn" class="bg-pink-500 text-white px-6 py-3 rounded-xl text-lg hover:bg-pink-600 transition">
-            Натисни мене для феєрверку 🎈
+    <div class="card bg-green-200 rounded-2xl p-4 shadow-2xl text-center">
+        <h1 class="text-3xl font-bold mb-2">🎉 З Днем Народження! 🎉</h1>
+        <p class="text-base mb-4">Бажаю тобі море радості, щастя та здійснення всіх мрій!</p>
+        <button id="start-btn" class="bg-pink-500 text-white px-4 py-2 rounded-xl text-lg hover:bg-pink-600 transition">
+            Натисни мене 🎈
         </button>
         <div id="balloons-container"></div>
     </div>
 
     <script>
-        const startBtn = document.getElementById('start-btn');
-        startBtn.addEventListener('click', () => {
+        const container = document.getElementById('balloons-container');
+        const btn = document.getElementById('start-btn');
+
+        btn.addEventListener('click', () => {
             for (let i = 0; i < 25; i++) {
                 setTimeout(createBalloon, i * 200);
             }
@@ -77,36 +79,41 @@
             const balloon = document.createElement('div');
             balloon.className = 'balloon';
 
+            // випадковий колір
             const colors = ['#ff9999', '#ffcc99', '#ffffaa', '#99ff99', '#99ccff', '#cc99ff', '#ffb3e6'];
             const color = colors[Math.floor(Math.random() * colors.length)];
-            const size = Math.random() * 30 + 40;
 
-            // випадкова позиція
-            const left = Math.random() * 80 + 5; // від 5% до 85% ширини
-            const bottom = Math.random() * 20;   // від 0 до 20px від низу
+            // випадковий розмір
+            const size = Math.random() * 30 + 30;
+
+            // випадкова позиція по ширині
+            const left = Math.random() * (container.clientWidth - size);
+
+            // старт трохи вище нижнього краю
+            balloon.style.left = `${left}px`;
+            balloon.style.bottom = `0px`;
+            balloon.style.width = `${size}px`;
+            balloon.style.height = `${size * 1.2}px`;
 
             balloon.innerHTML = `
-        <svg width="${size}" height="${size * 1.2}" viewBox="0 0 50 60">
-          <path d="M25,5 C15,5 5,15 5,30 C5,45 15,50 25,50 C35,50 45,45 45,30 C45,15 35,5 25,5" fill="${color}"/>
-          <path d="M25,50 L25,58" stroke="#666" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M23,58 L27,58" stroke="#666" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-      `;
+    <svg width="${size}" height="${size * 1.2}" viewBox="0 0 50 60">
+      <path d="M25,5 C15,5 5,15 5,30 C5,45 15,50 25,50 C35,50 45,45 45,30 C45,15 35,5 25,5" fill="${color}"/>
+      <path d="M25,50 L25,58" stroke="#666" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M23,58 L27,58" stroke="#666" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  `;
 
-            balloon.style.left = `${left}%`;
-            balloon.style.bottom = `${bottom}px`;
+            container.appendChild(balloon);
 
-            document.getElementById('balloons-container').appendChild(balloon);
-
-            // плавна поява
+            // зробимо видимим
             setTimeout(() => {
                 balloon.style.opacity = '1';
             }, 50);
 
-            // видалити після анімації
+            // приберемо після закінчення анімації
             setTimeout(() => {
                 balloon.remove();
-            }, 7000);
+            }, 6500);
         }
     </script>
 </body>
