@@ -2,53 +2,191 @@
 <html lang="uk">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>З Днем Народження!</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>З Днем Народження, Вікторія!</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+
         body {
-            background: linear-gradient(to right, #74ebd5, #acb6e5);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 50%, #80deea 100%);
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .name-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            color: #66bb6a;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .birthday-title {
+            color: #4fc3f7;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
         }
 
         .card {
+            background: rgba(220, 255, 220, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            max-width: 900px;
+            padding: 2rem;
+            margin: 2rem auto;
             position: relative;
-            /* Щоб кульки позиціювались всередині */
-            overflow: hidden;
-            /* Щоб не вилітали за межі */
-            width: 400px;
-            height: 300px;
+            overflow: visible;
+            /* Дозволяємо кулькам виходити за межі */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
         }
 
-        #balloons-container {
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .yoga-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            flex-shrink: 0;
+        }
+
+        .yoga-pose-1,
+        .yoga-pose-2,
+        .yoga-pose-3 {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .yoga-pose-1 {
+            opacity: 1;
+            position: relative;
+        }
+
+        .message-container {
+            max-width: 380px;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .message {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease;
+            margin-bottom: 1.5rem;
+            color: #333;
+            font-size: 1.125rem;
+        }
+
+        .message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .btn-action,
+        .btn-secondary {
+            cursor: pointer;
+            font-weight: 600;
+            border-radius: 9999px;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            user-select: none;
+            margin: 0 0.5rem 0.5rem 0.5rem;
+            display: inline-block;
+            position: relative;
+            z-index: 10;
+            /* щоб кнопки були над кульками */
+        }
+
+        .btn-action {
+            background: #4fc3f7;
+            color: white;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(79, 195, 247, 0.5);
+        }
+
+        .btn-secondary {
+            background: #ffd700;
+            color: #333333;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        /* Контейнер для кульок має pointer-events:none, щоб не перекривати кнопки */
+        #balloons-container {
             pointer-events: none;
-            overflow: hidden;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: visible;
+            z-index: 5;
+            /* щоб бути над фоном, але під кнопками */
         }
 
         .balloon {
             position: absolute;
+            animation: float 6s ease-in-out infinite;
             opacity: 0;
-            animation: float-up 6s linear forwards;
+            transition: opacity 1s ease;
+            user-select: none;
+            pointer-events: none;
         }
 
-        @keyframes float-up {
-            0% {
+        @keyframes float {
+
+            0%,
+            100% {
                 transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+            animation: fall 4s ease-out forwards;
+            pointer-events: none;
+            user-select: none;
+            z-index: 8;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
                 opacity: 1;
             }
 
             100% {
-                transform: translateY(-350px);
+                transform: translateY(100vh) rotate(360deg);
                 opacity: 0;
             }
         }
@@ -56,64 +194,136 @@
 </head>
 
 <body>
-    <div class="card bg-green-200 rounded-2xl p-4 shadow-2xl text-center">
-        <h1 class="text-3xl font-bold mb-2">🎉 З Днем Народження! 🎉</h1>
-        <p class="text-base mb-4">Бажаю тобі море радості, щастя та здійснення всіх мрій!</p>
-        <button id="start-btn" class="bg-pink-500 text-white px-4 py-2 rounded-xl text-lg hover:bg-pink-600 transition">
-            Натисни мене 🎈
-        </button>
-        <div id="balloons-container"></div>
+    <div class="card">
+        <div class="yoga-container">
+            <!-- Поза 1 -->
+            <svg class="yoga-pose-1" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="60" r="12" fill="#66bb6a" />
+                <path d="M100,72 L100,80" stroke="#66bb6a" stroke-width="6" stroke-linecap="round" />
+                <path d="M100,80 L100,110" stroke="#66bb6a" stroke-width="10" stroke-linecap="round" />
+                <path d="M100,85 L50,85" stroke="#66bb6a" stroke-width="6" stroke-linecap="round" />
+                <path d="M100,85 L150,85" stroke="#66bb6a" stroke-width="6" stroke-linecap="round" />
+                <circle cx="50" cy="85" r="4" fill="#66bb6a" />
+                <circle cx="150" cy="85" r="4" fill="#66bb6a" />
+                <path d="M100,110 L70,140" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                <path d="M70,140 L70,150" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                <path d="M100,110 L140,140" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                <path d="M140,140 L140,150" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                <path d="M65,150 L75,150" stroke="#66bb6a" stroke-width="6" stroke-linecap="round" />
+                <path d="M135,150 L145,150" stroke="#66bb6a" stroke-width="6" stroke-linecap="round" />
+                <circle cx="96" cy="57" r="2" fill="#fff" />
+                <circle cx="104" cy="57" r="2" fill="#fff" />
+                <path d="M96,64 Q100,66 104,64" stroke="#fff" stroke-width="1.5" fill="none" />
+                <path d="M88,52 Q100,40 112,52" stroke="#66bb6a" stroke-width="4" fill="none" />
+            </svg>
+
+            <!-- Поза 2 -->
+            <svg class="yoga-pose-2" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="100" cy="80" r="15" fill="#66bb6a" />
+                <path d="M100,95 L100,130" stroke="#66bb6a" stroke-width="10" stroke-linecap="round" />
+                <path d="M100,105 L130,130" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                <path d="M100,105 L70,130" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                <path d="M100,130 L140,130" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                <path d="M100,130 L60,130" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                <circle cx="95" cy="75" r="2" fill="#fff" />
+                <circle cx="105" cy="75" r="2" fill="#fff" />
+                <path d="M95,85 Q100,88 105,85" stroke="#fff" stroke-width="1.5" fill="none" />
+            </svg>
+
+            <!-- Поза 3 -->
+            <svg class="yoga-pose-3" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="60" cy="120" r="15" fill="#66bb6a" />
+                <path d="M75,120 Q100,80 125,120" stroke="#66bb6a" stroke-width="10" stroke-linecap="round"
+                    fill="none" />
+                <path d="M75,120 L55,140" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                <path d="M75,120 L55,100" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                <path d="M125,120 L140,150" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                <path d="M125,120 L110,150" stroke="#66bb6a" stroke-width="8" stroke-linecap="round" />
+                <circle cx="55" cy="115" r="2" fill="#fff" />
+                <circle cx="55" cy="125" r="2" fill="#fff" />
+                <path d="M65,120 Q68,125 65,130" stroke="#fff" stroke-width="1.5" fill="none" />
+            </svg>
+        </div>
+
+        <div class="message-container">
+            <h1 class="name-title">Вікторія</h1>
+            <h2 class="birthday-title">З Днем Народження!</h2>
+            <p class="message show">Бажаю багато радості, здоров’я та натхнення!</p>
+            <button id="change-position" class="btn-action">Змінити позу</button>
+        </div>
     </div>
 
-    <script>
-        const container = document.getElementById('balloons-container');
-        const btn = document.getElementById('start-btn');
+    <div id="balloons-container"></div>
 
-        btn.addEventListener('click', () => {
-            for (let i = 0; i < 25; i++) {
-                setTimeout(createBalloon, i * 200);
-            }
+    <script>
+        const poses = [
+            document.querySelector('.yoga-pose-1'),
+            document.querySelector('.yoga-pose-2'),
+            document.querySelector('.yoga-pose-3'),
+        ];
+
+        let currentPose = 0;
+        const btnChange = document.getElementById('change-position');
+
+        btnChange.addEventListener('click', () => {
+            poses[currentPose].style.opacity = 0;
+            currentPose = (currentPose + 1) % poses.length;
+            poses[currentPose].style.opacity = 1;
         });
+
+        const balloonsContainer = document.getElementById('balloons-container');
+
+        const colors = ['#ff6b6b', '#ffca3a', '#8ac926', '#1982c4', '#6a4c93'];
 
         function createBalloon() {
             const balloon = document.createElement('div');
-            balloon.className = 'balloon';
+            balloon.classList.add('balloon');
+            balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            balloon.style.width = `${20 + Math.random() * 30}px`;
+            balloon.style.height = balloon.style.width;
+            balloon.style.borderRadius = '50%';
+            balloon.style.position = 'absolute';
 
-            // випадковий колір
-            const colors = ['#ff9999', '#ffcc99', '#ffffaa', '#99ff99', '#99ccff', '#cc99ff', '#ffb3e6'];
-            const color = colors[Math.floor(Math.random() * colors.length)];
+            // Початкові позиції кульок випадкові по ширині екрану
+            balloon.style.left = `${Math.random() * window.innerWidth}px`;
+            balloon.style.bottom = `-40px`; // знизу трохи поза вікном
 
-            // випадковий розмір
-            const size = Math.random() * 30 + 30;
+            // Анімація польоту вгору + коливання в сторони
+            balloon.style.animationName = 'float';
+            balloon.style.animationDuration = `${5 + Math.random() * 5}s`;
+            balloon.style.animationTimingFunction = 'ease-in-out';
+            balloon.style.animationIterationCount = 'infinite';
 
-            // випадкова позиція по ширині
-            const left = Math.random() * (container.clientWidth - size);
+            balloonsContainer.appendChild(balloon);
 
-            // старт трохи вище нижнього краю
-            balloon.style.left = `${left}px`;
-            balloon.style.bottom = `0px`;
-            balloon.style.width = `${size}px`;
-            balloon.style.height = `${size * 1.2}px`;
-
-            balloon.innerHTML = `
-    <svg width="${size}" height="${size * 1.2}" viewBox="0 0 50 60">
-      <path d="M25,5 C15,5 5,15 5,30 C5,45 15,50 25,50 C35,50 45,45 45,30 C45,15 35,5 25,5" fill="${color}"/>
-      <path d="M25,50 L25,58" stroke="#666" stroke-width="1.5" stroke-linecap="round"/>
-      <path d="M23,58 L27,58" stroke="#666" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>
-  `;
-
-            container.appendChild(balloon);
-
-            // зробимо видимим
+            // Плавне появлення кульки
             setTimeout(() => {
                 balloon.style.opacity = '1';
-            }, 50);
+            }, 100);
 
-            // приберемо після закінчення анімації
-            setTimeout(() => {
-                balloon.remove();
-            }, 6500);
+            // Рух кульки вгору та видалення при виході з екрану
+            let posBottom = -40;
+            const speed = 1 + Math.random() * 1.5; // швидкість вгору
+
+            function moveUp() {
+                posBottom += speed;
+                balloon.style.bottom = posBottom + 'px';
+
+                if (posBottom > window.innerHeight + 40) {
+                    // Видаляємо і створюємо нову кульку замість неї
+                    balloonsContainer.removeChild(balloon);
+                    createBalloon();
+                    return;
+                }
+                requestAnimationFrame(moveUp);
+            }
+
+            requestAnimationFrame(moveUp);
+        }
+
+        // Створюємо 15 кульок відразу
+        for (let i = 0; i < 15; i++) {
+            createBalloon();
         }
     </script>
 </body>
