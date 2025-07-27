@@ -4,54 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Кульки та «Так/Ні»</title>
+    <title>З Днем Народження!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            overflow: hidden;
-            background: #fef9e7;
+            background: linear-gradient(to right, #74ebd5, #acb6e5);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-family: sans-serif;
         }
 
-        .container {
+        .card {
             position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            padding-top: 50px;
+            /* важливо для кульок */
+            overflow: hidden;
         }
 
-        .question {
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-
-        .btn {
-            font-size: 24px;
-            padding: 10px 30px;
-            margin: 10px;
-            cursor: pointer;
-            border: none;
-            border-radius: 8px;
-            transition: 0.3s;
-        }
-
-        .btn-yes {
-            background: #7bed9f;
-        }
-
-        .btn-yes:hover {
-            background: #2ed573;
-        }
-
-        .btn-no {
-            background: #ff6b81;
-            position: absolute;
-        }
-
-        /* контейнер для кульок */
         #balloons-container {
             position: absolute;
             top: 0;
@@ -64,30 +34,19 @@
 
         .balloon {
             position: absolute;
-            width: 40px;
-            height: 60px;
-            background: red;
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
             opacity: 0;
-            animation: rise 6s ease-in forwards;
+            transition: opacity 1s ease;
+            animation: float-up 6s linear forwards;
         }
 
-        @keyframes rise {
+        @keyframes float-up {
             0% {
-                transform: translateY(100vh) scale(1);
-                opacity: 0;
-            }
-
-            10% {
+                transform: translateY(0);
                 opacity: 1;
             }
 
-            50% {
-                transform: translateY(50vh) scale(1.05);
-            }
-
             100% {
-                transform: translateY(-10vh) scale(0.9);
+                transform: translateY(-120%);
                 opacity: 0;
             }
         }
@@ -95,64 +54,59 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="question">Будеш моєю?</div>
-        <button class="btn btn-yes" id="yesBtn">Так</button>
-        <button class="btn btn-no" id="noBtn">Ні</button>
+    <div class="card bg-green-200 rounded-2xl p-8 shadow-2xl w-full max-w-2xl text-center">
+        <h1 class="text-4xl font-bold mb-4">🎉 З Днем Народження! 🎉</h1>
+        <p class="text-lg mb-6">
+            Бажаю тобі море радості, щастя та здійснення всіх мрій! 🌈💖
+        </p>
+        <button id="start-btn" class="bg-pink-500 text-white px-6 py-3 rounded-xl text-lg hover:bg-pink-600 transition">
+            Натисни мене для феєрверку 🎈
+        </button>
         <div id="balloons-container"></div>
     </div>
 
     <script>
-        const noBtn = document.getElementById('noBtn');
-        const yesBtn = document.getElementById('yesBtn');
-        const container = document.querySelector('.container');
-
-        // спочатку ставимо кнопку "Ні" десь
-        positionNoButton();
-
-        // рухаємо "Ні" при наведенні
-        noBtn.addEventListener('mouseenter', () => {
-            positionNoButton();
-        });
-
-        function positionNoButton() {
-            const containerRect = container.getBoundingClientRect();
-            const btnWidth = 80;
-            const btnHeight = 40;
-            const randomX = Math.random() * (containerRect.width - btnWidth);
-            const randomY = Math.random() * (containerRect.height - btnHeight - 50) + 50;
-            noBtn.style.left = randomX + 'px';
-            noBtn.style.top = randomY + 'px';
-        }
-
-        // при кліку на Так – запускаємо кульки
-        yesBtn.addEventListener('click', () => {
-            launchBalloons();
-        });
-
-        function launchBalloons() {
-            const container = document.getElementById('balloons-container');
-            for (let i = 0; i < 30; i++) {
-                const balloon = document.createElement('div');
-                balloon.classList.add('balloon');
-
-                // випадковий колір
-                const colors = ['#ff4757', '#ffa502', '#1e90ff', '#2ed573', '#eccc68', '#3742fa'];
-                balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
-
-                // випадкова позиція по ширині
-                balloon.style.left = `${Math.random() * 90}%`;
-
-                // випадкова затримка анімації
-                balloon.style.animationDelay = `${Math.random() * 3}s`;
-
-                container.appendChild(balloon);
-
-                // прибираємо кульку після анімації
-                setTimeout(() => {
-                    balloon.remove();
-                }, 7000);
+        const startBtn = document.getElementById('start-btn');
+        startBtn.addEventListener('click', () => {
+            for (let i = 0; i < 25; i++) {
+                setTimeout(createBalloon, i * 200);
             }
+        });
+
+        function createBalloon() {
+            const balloon = document.createElement('div');
+            balloon.className = 'balloon';
+
+            const colors = ['#ff9999', '#ffcc99', '#ffffaa', '#99ff99', '#99ccff', '#cc99ff', '#ffb3e6'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            const size = Math.random() * 30 + 40;
+
+            // випадкова позиція
+            const left = Math.random() * 80 + 5; // від 5% до 85% ширини
+            const bottom = Math.random() * 20;   // від 0 до 20px від низу
+
+            balloon.innerHTML = `
+        <svg width="${size}" height="${size * 1.2}" viewBox="0 0 50 60">
+          <path d="M25,5 C15,5 5,15 5,30 C5,45 15,50 25,50 C35,50 45,45 45,30 C45,15 35,5 25,5" fill="${color}"/>
+          <path d="M25,50 L25,58" stroke="#666" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M23,58 L27,58" stroke="#666" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      `;
+
+            balloon.style.left = `${left}%`;
+            balloon.style.bottom = `${bottom}px`;
+
+            document.getElementById('balloons-container').appendChild(balloon);
+
+            // плавна поява
+            setTimeout(() => {
+                balloon.style.opacity = '1';
+            }, 50);
+
+            // видалити після анімації
+            setTimeout(() => {
+                balloon.remove();
+            }, 7000);
         }
     </script>
 </body>
